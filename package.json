@@ -1,0 +1,42 @@
+{
+  "name": "anydoor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/app.js",
+  "bin": {
+    "anydoor": "bin/anydoor"
+  },
+  "dependencies": {
+    "babel-eslint": "^10.0.1",
+    "chalk": "^2.4.1",
+    "handlebars": "^4.0.12",
+    "npmignore": "^0.2.0",
+    "npmignore-defaults": "^1.0.0",
+    "yargs": "^12.0.2"
+  },
+  "devDependencies": {
+    "pre-commit": "^1.2.2",
+    "babel-cli": "^6.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint .",
+    "fix": "eslint --fix .",
+    "build": "babel src -d lib"
+  },
+  "pre-commit": [
+    "fix",
+    "lint"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cjiao100/anydoor.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cjiao100/anydoor/issues"
+  },
+  "homepage": "https://github.com/cjiao100/anydoor#readme"
+}
