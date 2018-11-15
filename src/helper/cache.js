@@ -12,14 +12,13 @@ function refreshRes(stats, res) {
 	}
 	
 	if (lastModified) {
-		res.setHeader('lastModified', stats.mtime.toUTCString());
+		res.setHeader('Last-Modified', stats.mtime.toUTCString());
 	}
 	
 	if (etag) {
-		res.setHeader('stag', `${stats.size}-${stats.mtime}`)
+		res.setHeader('ETag', `${stats.size}-${stats.mtime}`)
 	}
 }
-
 
 module.exports = (stats, req, res) => {
 	

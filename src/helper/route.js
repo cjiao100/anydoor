@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 const fs = require('fs');
 const path = require('path');
 const promisify = require('util').promisify;
@@ -9,8 +8,9 @@ const handlebars = require('handlebars');
 const mime = require('./mime');
 const compress = require('./compress');
 const range = require('./range');
-// const isFresh = require('./cache');
+const isFresh = require('./cache');
 
+// eslint-disable-next-line no-undef
 const tplPath = path.join(__dirname, '../template/dir.tpl');
 const source = fs.readFileSync(tplPath, 'utf8');
 const template = handlebars.compile(source);
@@ -23,8 +23,14 @@ module.exports = async function(req, res, filePath, config) {
 		
 		if (stats.isFile()) {
 			const contentType = mime(filePath);
-			
 			res.setHeader('Content-Type', contentType);
+			
+			if (isFresh(stats, req, res)) {
+				res.statusCode = 304;
+				res.end();
+				
+				return;
+			}
 			
 			let rs;
 			const {code, start, end} = range(stats.size, req, res);

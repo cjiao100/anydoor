@@ -1,6 +1,7 @@
 const yargs = require('yargs');
 const Server = require('./app');
-const argv = yargs.usage('anywhere [option]').option('p', {
+
+const argv = yargs.usage('anywhere [options]').option('p', {
 	alias: 'port',
 	describe: '端口号',
 	default: 9527
